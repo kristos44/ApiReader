@@ -1,10 +1,12 @@
 package com.mycompany.app.fetcher;
 
 import com.mycompany.app.integration.FuelApiClient;
+import com.mycompany.app.properties.PropertiesLoader;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
@@ -14,15 +16,17 @@ public class DataFetcherTest {
     public void fetchDataTest() {
         FuelApiClient testFuelApiClient = mock(FuelApiClient.class);
 
+        Properties properties = PropertiesLoader.getProperties();
+
         String staticResponse = "";
         String dynamicResponse = "";
 
         try {
             staticResponse = IOUtils.toString(
-                    this.getClass().getResourceAsStream("/StaticFeed-NO.json"), "UTF-8"
+                    this.getClass().getResourceAsStream(properties.get("staticFeedFile").toString()), "UTF-8"
             );
             dynamicResponse = IOUtils.toString(
-                    this.getClass().getResourceAsStream("/DynamicFeed-NO.json"), "UTF-8"
+                    this.getClass().getResourceAsStream(properties.get("dynamicFeedFile").toString()), "UTF-8"
             );
         } catch (IOException e) {
             e.printStackTrace();
