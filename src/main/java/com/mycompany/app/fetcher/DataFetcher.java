@@ -28,10 +28,10 @@ public class DataFetcher {
     public String fetchData(String apiUrl, String country) {
         Properties properties = PropertiesLoader.getProperties();
 
-        Optional<StationData> staticStationDataOptional = jsonToModelMapper.mapJsontoStationData(
+        Optional<StationData> staticStationDataOptional = jsonToModelMapper.mapJsonToStationData(
                 fuelApiClient.fetchStationData(apiUrl + properties.get("staticApiUrl") + country));
 
-        Optional<StationData> dynamicStationDataOptional = jsonToModelMapper.mapJsontoStationData(
+        Optional<StationData> dynamicStationDataOptional = jsonToModelMapper.mapJsonToStationData(
                 fuelApiClient.fetchStationData(apiUrl + properties.get("dynamicApiUrl") + country));
 
         return responseFormatter.formatResponse(staticStationDataOptional, dynamicStationDataOptional);
