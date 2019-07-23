@@ -6,5 +6,5 @@ make sure that src/main/resources/app.properties file define proper api addresse
 
 run mvn assembly:assembly -DdescriptorId=jar-with-dependencies
 
-run java -cp target/ApiClient-1.0-SNAPSHOT-jar-with-dependencies.jar com.mycompany.app.App --apiUrl=http://localhost:8080 --country=NO
+run java -cp target/ApiClient-1.0-SNAPSHOT-jar-with-dependencies.jar com.mycompany.app.App --apiUrl=http://localhost:9000 --country=NO
 with proper api url (required) and country (not required) params set
