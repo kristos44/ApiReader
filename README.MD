@@ -2,7 +2,7 @@ cd to dir where repo cloned
 
 copy StaticFeed-NO.json and DynamicFeed-NO.json to src/test/resources dir
 
-make sure that src/main/resources/app.properties file define proper api addresses and names of two json files previously copied
+make sure that src/main/resources/app.properties file define proper api addresses, key and names of two json files previously copied
 
 run mvn assembly:assembly -DdescriptorId=jar-with-dependencies
 

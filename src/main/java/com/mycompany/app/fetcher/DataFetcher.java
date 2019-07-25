@@ -25,14 +25,16 @@ public class DataFetcher {
         responseFormatter = new ResponseFormatter();
     }
 
-    public String fetchData(String apiUrl, String country) {
+    public String fetchData(String apiUrl, String country, String apiKey) {
         Properties properties = PropertiesLoader.getProperties();
 
         Optional<StationData> staticStationDataOptional = jsonToModelMapper.mapJsonToStationData(
-                fuelApiClient.fetchStationData(apiUrl + properties.get("staticApiUrl") + country));
+                fuelApiClient.fetchStationData(apiUrl + properties.get("staticApiUrl") + country + "&key="
+                        + apiKey));
 
         Optional<StationData> dynamicStationDataOptional = jsonToModelMapper.mapJsonToStationData(
-                fuelApiClient.fetchStationData(apiUrl + properties.get("dynamicApiUrl") + country));
+                fuelApiClient.fetchStationData(apiUrl + properties.get("dynamicApiUrl") + country + "&key="
+                        + apiKey));
 
         return responseFormatter.formatResponse(staticStationDataOptional, dynamicStationDataOptional);
     }

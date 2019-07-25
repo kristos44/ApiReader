@@ -32,10 +32,10 @@ public class DataFetcherTest {
             e.printStackTrace();
         }
 
-        when(testFuelApiClient.fetchStationData("http://localhost:8080/fuel/v1.0/bulk/static/NO"))
+        when(testFuelApiClient.fetchStationData("http://localhost:8080/fuel/v1.0/bulk/static/NO&key=abc"))
                 .thenReturn(staticResponse);
 
-        when(testFuelApiClient.fetchStationData("http://localhost:8080/fuel/v1.0/bulk/dynamic/NO"))
+        when(testFuelApiClient.fetchStationData("http://localhost:8080/fuel/v1.0/bulk/dynamic/NO&key=abc"))
                 .thenReturn(dynamicResponse);
 
         DataFetcher dataFetcher = new DataFetcher(testFuelApiClient);
@@ -62,6 +62,6 @@ public class DataFetcherTest {
                         "Pedersen Varmeservice Alta 1\n" +
                         "Tanken Brenna 1\n" +
                         "Trøndelag Diesel 1\n",
-                dataFetcher.fetchData("http://localhost:8080", "NO"));
+                dataFetcher.fetchData("http://localhost:8080", "NO", "abc"));
     }
 }

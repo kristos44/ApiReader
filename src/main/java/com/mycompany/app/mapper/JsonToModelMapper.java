@@ -17,7 +17,7 @@ public class JsonToModelMapper {
         StationData stationData;
         try {
             stationData = objectMapper.readValue(json, StationData.class);
-            return Optional.of(stationData);
+            return Optional.ofNullable(stationData);
         } catch (IOException e) {
             e.printStackTrace();
         }

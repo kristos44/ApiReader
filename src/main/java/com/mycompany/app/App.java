@@ -1,7 +1,10 @@
 package com.mycompany.app;
 
 import com.mycompany.app.fetcher.DataFetcher;
+import com.mycompany.app.properties.PropertiesLoader;
 import org.apache.commons.cli.*;
+
+import java.util.Properties;
 
 public class App
 {
@@ -20,11 +23,14 @@ public class App
         HelpFormatter formatter = new HelpFormatter();
         CommandLine cmd;
 
+        Properties properties = PropertiesLoader.getProperties();
+
         try {
             cmd = parser.parse(options, args);
             DataFetcher dataFetcher = new DataFetcher();
             System.out.println(dataFetcher.fetchData(cmd.getOptionValue("apiUrl"),
-                    cmd.getOptionValue("country") != null ? cmd.getOptionValue("country") : "NO"));
+                    cmd.getOptionValue("country") != null ? cmd.getOptionValue("country") : "NO",
+                    properties.get("apiKey").toString()));
         } catch (ParseException e) {
             System.out.println(e.getMessage());
             formatter.printHelp("utility-name", options);
